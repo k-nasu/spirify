@@ -1,0 +1,60 @@
+---
+description:
+globs:
+---
+
+## 技術スタック
+
+### フロントエンド
+- フレームワーク: Flutter
+- 言語: Dart
+- 状態管理: Riverpod または Provider
+- UI: 基本的に Material で構築し、必要な部分だけ Cupertino を組み込む
+- 通信: graphql_flutter による GraphQL クライアント
+- 画像処理:
+  - image_picker, image_cropper（画像取得・編集）
+  - flutter_image_compress（圧縮）
+
+---
+
+### バックエンド / API
+- 言語: TypeScript
+- ランタイム: Node.js
+- API: GraphQL（スキーマファースト設計）
+- フレームワーク: Nexus または GraphQL Yoga
+- 画像アップロード処理:
+  - multer + sharp（画像リサイズ・前処理）
+- OCR処理:
+  - Google Cloud Vision API（高精度）
+  - tesseract.js（Node.jsベース代替）
+- 認証: Firebase Authentication（JWT認証）
+
+---
+
+### データベース
+- DB: PostgreSQL
+- ORM: Prisma（型安全・スキーマ駆動）
+- ベクトル検索: pgvector（レコメンド用）
+
+---
+
+### ストレージ・CDN
+- オプション: Firebase Storage / Supabase Storage / Amazon S3
+- CDN: Cloudflare Images / CloudFront
+
+---
+
+### レコメンドエンジン
+- 初期: ルールベース（タグ / 評価 / 酒の種類）
+- 拡張:
+  - 協調フィルタリング
+  - embedding によるベクトル検索（pgvector + Prisma）
+  - Python側で sentence-transformers など利用可
+
+---
+
+### その他
+- 型共有: GraphQL Code Generator（クライアント・サーバ間）
+- モニタリング: Sentry（Flutter / Node.js）
+- 分析: Firebase Analytics / Mixpanel / Amplitude
+- CI/CD: GitHub Actions（Lint / Test / 型チェック）
